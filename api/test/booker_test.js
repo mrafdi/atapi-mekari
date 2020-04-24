@@ -9,10 +9,10 @@ chai.use(require('chai-json-schema'));
 
 const testCaseBook = {
     "positive" : {
-       "postBooking" : "As a User, I should be able to book from the Restful Booker",
+       "postBooking" : "As a User, I should be able to create booking from the Restful Booker",
     },
     "negative" : {
-       "noData" : "As a User, I should not be able to book if the data provided is null",
+       "noData" : "As a User, I should not be able to create booking if the data provided is null",
     }
 };
 
@@ -61,7 +61,7 @@ describe(`Mekari Test using Restful Booker`, () => {
         })
     
         it(`@get ${testCaseDelete.negative.idNotExist}`, async() => {
-            const response = await page.createBooking(111, token);
+            const response = await page.createBooking('111', token);
             assert(response.status).to.equal(405);
             console.log(response.body)
             // assert(response.body.Response).to.equal('False');
