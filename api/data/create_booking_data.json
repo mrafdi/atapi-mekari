@@ -1,0 +1,11 @@
+{
+    "firstname" : "Kim",
+    "lastname" : "Chuu",
+    "totalprice" : 111,
+    "depositpaid" : true,
+    "bookingdates" : {
+        "checkin" : "2020-01-02",
+        "checkout" : "2020-01-01"
+    },
+    "additionalneeds" : "Breakfast"
+}
