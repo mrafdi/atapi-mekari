@@ -33,7 +33,6 @@ describe(`Mekari Test using Restful Booker`, () => {
         const response = await auth.createToken(dataAuth);
         assert(response.status).to.equal(200);
         token = response.body.token;
-        console.log(token);
     })
 
     describe('Test Case for Booking', () => {
@@ -42,7 +41,6 @@ describe(`Mekari Test using Restful Booker`, () => {
             assert(response.status).to.equal(200);
             assert(response.body).to.be.jsonSchema(schema);
             bookingID = response.body.bookingid;
-            console.log(bookingID);
         })
     
         it(`@get ${testCaseBook.negative.noData}`, async() => {
@@ -57,20 +55,18 @@ describe(`Mekari Test using Restful Booker`, () => {
         it(`@get ${testCaseDelete.positive.deleteBooking}`, async() => {
             const response = await page.deleteBooking(bookingID, token);
             assert(response.status).to.equal(201);
-            console.log(response.body)
         })
     
         it(`@get ${testCaseDelete.negative.idNotExist}`, async() => {
             const response = await page.createBooking('111', token);
-            assert(response.status).to.equal(405);
-            console.log(response.body)
+            assert(response.status).to.equal(400);
             // assert(response.body.Response).to.equal('False');
             // assert(response.body.Error).to.equal('Something went wrong.');
         })
     
-        it(`@get ${testCaseBook.negative.invalidApiKey}`, async() => {
+        it(`@get ${testCaseDelete.negative.invalidToken}`, async() => {
             const response = await page.createBooking(bookingID, '');
-            assert(response.status).to.equal(403);
+            assert(response.status).to.equal(400);
             // assert(response.body.Response).to.equal('False');
             // assert(response.body.Error).to.equal('Invalid API key!');
         })
